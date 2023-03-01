@@ -22,7 +22,6 @@ public class JoblistingApplication {
 				.apis(RequestHandlerSelectors.withClassAnnotation(RestController.class)).paths(PathSelectors.any())
 				.build().apiInfo(apiInfo()).useDefaultResponseMessages(false);
 	}
-
 	@Bean
 	public ApiInfo apiInfo() {
 		final ApiInfoBuilder builder = new ApiInfoBuilder();
