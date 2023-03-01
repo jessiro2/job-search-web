@@ -1,5 +1,5 @@
 # Job Search Web Application 
-A Spring Boot web application for job search
+A Spring Boot web application for job search.
 
 
 
