@@ -1,6 +1,8 @@
 package com.telusko.joblisting.controller;
 
+import com.telusko.joblisting.PostRepository;
 import com.telusko.joblisting.model.Post;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,6 +15,10 @@ import java.util.List;
 @RestController
 public class PostController {
 
+    //autowire annotation creates an object for you and maps it
+    @Autowired
+    PostRepository repo;
+
     // create a method to enable the swagger
     @ApiIgnore
     @RequestMapping(value="/")
@@ -23,6 +29,6 @@ public class PostController {
     //fetch all the posts
     @GetMapping("/posts")
      public List<Post> getAllPosts() {
-        return null;
+        return repo.findAll();
      }
 }
