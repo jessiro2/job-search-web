@@ -1,7 +1,8 @@
 package com.telusko.joblisting.controller;
 
-import com.telusko.joblisting.PostRepository;
+import com.telusko.joblisting.repository.PostRepository;
 import com.telusko.joblisting.model.Post;
+import com.telusko.joblisting.repository.SearchRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
@@ -17,6 +18,9 @@ public class PostController {
     @Autowired
     PostRepository repo;
 
+    @Autowired
+    SearchRepository srepo;
+
     // create a method to enable the swagger
     @ApiIgnore
     @RequestMapping(value="/")
@@ -30,8 +34,15 @@ public class PostController {
         return repo.findAll();
      }
 
+    @GetMapping("/posts/{text}")
+    public List<Post> search(@PathVariable String text) {
+        return srepo.findByText(text);
+    }
+
      @PostMapping("/post")
      public Post addPost(@RequestBody Post post) {
             return repo.save(post);
      }
+
+
 }
